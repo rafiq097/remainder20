@@ -5,7 +5,7 @@ const Email = require('../models/email.model.js');
 const sendEmail = require('./nodemailer.js');
 
 const sendCronEmails = () => {
-    cron.schedule('* * * * *', async () => {
+    cron.schedule('0 22 * * *', async () => {
         try
         {  
             let now = new Date();
@@ -36,12 +36,30 @@ const sendCronEmails = () => {
             const emails = await Email.find({});
             console.log(emails);
 
+            const getFormattedDate = (date) => {
+                const day = ('0' + date.getDate()).slice(-2);
+                const month = ('0' + (date.getMonth() + 1)).slice(-2);
+                const year = date.getFullYear();
+                return `${day}/${month}/${year}`;
+            };
+            
+            const today = new Date();
+            const tomorrow = new Date();
+            tomorrow.setDate(today.getDate() + 1);
+            
+            const todayFormatted = getFormattedDate(today);
+            const tomorrowFormatted = getFormattedDate(tomorrow);
+            
+            console.log(`Today: ${todayFormatted}`);
+            console.log(`Tomorrow: ${tomorrowFormatted}`);
+            
+
             emails.forEach(async (email) => {
                 const usersHTML = `
                     <html>
                     <head></head>
                     <body>
-                        <h2>Tomorrow</h2>
+                        <h2>Tomorrow - ${tomorrowFormatted}</h2>
                         <table border="5">
                             <thead>
                                 <tr>
@@ -77,7 +95,7 @@ const sendCronEmails = () => {
                     <html>
                     <head></head>
                     <body>
-                        <h2>Today</h2>
+                        <h2>Today - ${todayFormatted}</h2>
                         <table border="5">
                             <thead>
                                 <tr>
@@ -103,13 +121,18 @@ const sendCronEmails = () => {
                     </body>
                     </html>
 
-
+                    <br/>
+                    <br/>
+                    <br/>
+                    <hr>
+                    <h1>Made With Pain</h1>
+                    <hr>
                 `
                 ;
             
                 await sendEmail(
                     email.email,
-                    'User List',
+                    'List of BirthDay\'s',
                     usersHTML
                 );
             });
