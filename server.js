@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 const sendCronEmails = require("./email/cron.js");
-// sendCronEmails();
+sendCronEmails();
 
 const PORT = process.env.PORT || 3000;
 
