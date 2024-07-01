@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+require('dotenv').config();
 
 app.use(express.json());
 
@@ -15,6 +16,9 @@ db(url);
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+const sendCronEmails = require("./email/cron.js");
+sendCronEmails();
 
 const PORT = process.env.PORT || 3000;
 
