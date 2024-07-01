@@ -26,8 +26,9 @@
             let email = document.getElementById("email").value;
             let messageBox = document.getElementById("message");
 
+            //User check
             try{
-                let response = await fetch("/user/register", {
+                let response = await fetch("/user/check", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -36,22 +37,49 @@
                 });
 
                 let data = await response.json();
-                if(response.status === 201)
+                if(data.success)
                 {
                     console.log(data);
                     messageBox.innerHTML = data.message;
-                    messageBox.className = "text-green-900";
+                    messageBox.className = "text-red-900";
                 }
                 else
                 {
-                    console.error("Error:", data.error);
-                    messageBox.innerHTML = data.error || "Failed to subscribe";
-                    messageBox.className = "text-red-900";
+                    //Register
+                    try{
+                        let response = await fetch("/user/register", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ email: email })
+                        });
+
+                        let data = await response.json();
+                        if(response.status === 201)
+                        {
+                            console.log(data);
+                            messageBox.innerHTML = data.message;
+                            messageBox.className = "text-green-900";
+                        }
+                        else
+                        {
+                            console.error("Error:", data.error);
+                            messageBox.innerHTML = data.error || "Failed to subscribe";
+                            messageBox.className = "text-red-900";
+                        }
+                    }
+                    catch(error){
+                        console.error("Error:", error);
+                        messageBox.innerHTML = "Something went wrong... Please try again later..";
+                        messageBox.className = "text-red-900";
+                    }
                 }
             }
-            catch(error){
+            catch(error)
+            {
                 console.error("Error:", error);
-                messageBox.innerHTML = "An error occurred.";
+                messageBox.innerHTML = "Something went wrong... Please try again later..";
                 messageBox.className = "text-red-900";
             }
         });
