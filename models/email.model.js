@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const toIST = (date) => {
-    const IST_OFFSET = 5.5 * 60 * 60 * 1000; // IST is GMT+5.5
-    return new Date(date.getTime() + IST_OFFSET);
+    const IST = 5.5 * 60 * 60 * 1000;
+    return new Date(date.getTime() + IST);
 };
 
 const emailSchema = new mongoose.Schema({
