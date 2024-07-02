@@ -5,37 +5,9 @@ const Email = require('../models/email.model.js');
 const sendEmail = require('./nodemailer.js');
 
 const sendCronEmails = () => {
-    cron.schedule('52 10 * * *', async () => {
+    cron.schedule('20 11 * * *', async () => {
         try
         {  
-            let now = new Date();
-            let currentDay = now.getDate();
-            let currentMonth = now.getMonth() + 1;
-            
-            const todayUsers = await User.find({
-                DOB: { $regex: `^${currentDay.toString().padStart(2, '0')}/${currentMonth.toString().padStart(2, '0')}`, $options: 'i' }
-            });
-            
-            let tomorrowDay = currentDay + 1;
-            
-            if(currentMonth == 2 && currentDay == 28)
-                currentMonth++;
-            else if((currentMonth == 4 ||currentMonth == 6 || currentMonth == 9 || currentMonth == 11) && currentDay == 30)
-                currentMonth++;
-            else
-                currentMonth++;
-
-            let tomorrowMonth = currentMonth;
-
-            const tomorrowUsers = await User.find({
-                DOB: { $regex: `^${tomorrowDay.toString().padStart(2, '0')}/${tomorrowMonth.toString().padStart(2, '0')}`, $options: 'i' }
-            });
-
-            console.log(todayUsers, "\n", tomorrowUsers);
-
-            const emails = await Email.find({});
-            console.log(emails);
-
             const getFormattedDate = (date) => {
                 const day = ('0' + date.getDate()).slice(-2);
                 const month = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -52,7 +24,26 @@ const sendCronEmails = () => {
             
             console.log(`Today: ${todayFormatted}`);
             console.log(`Tomorrow: ${tomorrowFormatted}`);
+
+
+            let currentDay = today.getDate();
+            let currentMonth = today.getMonth() + 1;
+            console.log(currentDay + ' ' + currentMonth);
+            const todayUsers = await User.find({
+                DOB: { $regex: `^${currentDay.toString().padStart(2, '0')}/${currentMonth.toString().padStart(2, '0')}`, $options: 'i' }
+            });
             
+            let tomorrowDay = tomorrow.getDate();
+            let tomorrowMonth = tomorrow.getMonth() + 1;
+            console.log(tomorrowDay, " ", tomorrowMonth);
+            const tomorrowUsers = await User.find({
+                DOB: { $regex: `^${tomorrowDay.toString().padStart(2, '0')}/${tomorrowMonth.toString().padStart(2, '0')}`, $options: 'i' }
+            });
+
+            console.log(todayUsers, "\n", tomorrowUsers);
+
+            const emails = await Email.find({});
+            console.log(emails);
 
             emails.forEach(async (email) => {
                 const usersHTML = `
@@ -66,6 +57,7 @@ const sendCronEmails = () => {
                                     <th>#</th>
                                     <th>ID</th>
                                     <th>NAME</th>
+                                    <th>DOB</th>
                                     <th>GENDER</th>
                                     <th>BRAMCH</th>
                                 </tr>
@@ -76,6 +68,7 @@ const sendCronEmails = () => {
                                         <td>${index+1}</td>
                                         <td>${user.ID}</td>
                                         <td>${user.NAME}</td>
+                                        <td>${user.DOB}</td>
                                         <td>${user.GENDER}</td>
                                         <td>${user.BRANCH}</td>
                                     </tr>
@@ -102,6 +95,7 @@ const sendCronEmails = () => {
                                     <th>#</th>
                                     <th>ID</th>
                                     <th>NAME</th>
+                                    <th>DOB</th>
                                     <th>GENDER</th>
                                     <th>BRAMCH</th>
                                 </tr>
@@ -112,6 +106,7 @@ const sendCronEmails = () => {
                                         <td>${index+1}</td>
                                         <td>${user.ID}</td>
                                         <td>${user.NAME}</td>
+                                        <td>${user.DOB}</td>
                                         <td>${user.GENDER}</td>
                                         <td>${user.BRANCH}</td>
                                     </tr>
