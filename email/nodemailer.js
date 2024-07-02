@@ -20,11 +20,12 @@ const sendEmail = async (to, subject, html) => {
 
         const info = await transporter.sendMail(mailOptions);
 
-        console.log(`Email sent to ${to}`);
+        console.log(`Email sent to: ${to}`);
         return true;
     }
     catch(err){
         console.log(err.message);
+        return false;
     }
 };
 
