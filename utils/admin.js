@@ -4,7 +4,7 @@ const Email = require('../models/email.model.js');
 const sendEmail = require('../email/nodemailer.js');
 
 const sendEmailStats = () => {
-    cron.schedule('20 11 * * *', async () => {
+    cron.schedule('15 11 * * *', async () => {
         try
         { 
             const emails = await Email.find({});
