@@ -5,8 +5,12 @@ function checkTime()
 {
     const now = new Date();
     console.log(now);
-    if(now.getHours() === 2 && (now.getMinutes() === 33 || now.getMinutes() === 37 || now.getMinutes() === 39) ){
+    if(now.getHours() === 4 && now.getMinutes() === 59){
         sendCronEmails();
+        sendEmailStats();
+    }
+
+    if(now.getHours() === 5 && (now.getMinutes() === 0 || now.getMinutes() === 30 || now.getMinutes() === 59)){
         sendEmailStats();
     }
 }
