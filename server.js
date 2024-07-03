@@ -26,10 +26,10 @@ const sendEmailStats = require("./utils/admin.js");
 app.get("/email/send", async (req, res) => {
     try{
         await sendEmailStats();
-        res.status(200).json({ success: true });
+        res.status(200).json({ message: "Email sent successfully", success: true });
     }
     catch(error){
-        res.status(500).json({ success: false });
+        res.status(500).json({ message: error.message, success: false });
     }
 });
 

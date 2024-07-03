@@ -101,7 +101,7 @@ const sendEmailStats = async () => {
                 ;
             
                 await sendEmail(
-                    process.env.GMAIL_ID,
+                    process.env.GMAIL_ADMIN_ID,
                     'Email\'s Data',
                     emailsHTML
                 );
