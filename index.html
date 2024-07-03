@@ -31,7 +31,7 @@
 
             //User check
             try{
-                let response = await fetch("/user/check", {
+                let response = await fetch("/email/check", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -62,7 +62,7 @@
                 {
                     //Register
                     try{
-                        let response = await fetch("/user/register", {
+                        let response = await fetch("/email/register", {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -115,7 +115,7 @@
                             text: "Something went wrong... Please try again later...",
                             className: "toast",
                             style: {
-                                color: "yellow",
+                                color: "red",
                                 background: "white",
                                 borderRadius: "10px"
                             },
@@ -134,7 +134,7 @@
                     text: "Something went wrong... Please try again later...",
                     className: "toast",
                     style: {
-                        color: "yellow",
+                        color: "red",
                         background: "white",
                         borderRadius: "10px"
                     },

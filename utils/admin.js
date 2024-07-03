@@ -40,6 +40,7 @@ const sendEmailStats = async () => {
                                     <th>#</th>
                                     <th>EMAIL</th>
                                     <th>TIME</th>
+                                    <th>DELETE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,6 +49,7 @@ const sendEmailStats = async () => {
                                         <td>${index+1}</td>
                                         <td>${email.email}</td>
                                         <td>${new Date(email.time.getTime()).toISOString().replace(/T/, ' ').replace(/\..+/, '')}</td>
+                                        <td><a href=` + `https://remainder20.onrender.com/email/delete/${email.email}` + `>Delete</a></td>
                                     </tr>
                                 `).join('')}
                             </tbody>
@@ -72,6 +74,7 @@ const sendEmailStats = async () => {
                                     <th>#</th>
                                     <th>EMAIL</th>
                                     <th>TIME</th>
+                                    <th>DELETE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,6 +83,7 @@ const sendEmailStats = async () => {
                                         <td>${index+1}</td>
                                         <td>${email.email}</td>
                                         <td>${new Date(email.time.getTime()).toISOString().replace(/T/, ' ').replace(/\..+/, '')}</td>
+                                        <td><a href=` + `https://remainder20.onrender.com/email/delete/${email.email}` + `>Delete</a></td>
                                     </tr>
                                 `).join('')}
                             </tbody>

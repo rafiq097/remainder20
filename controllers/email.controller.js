@@ -30,4 +30,18 @@ const checkUser = async (req, res) => {
     }
 };
 
-module.exports = { registerEmail, checkUser };
+const deleteEmail = async(req, res) => {
+    console.log(req.params);
+    const { email } = req.params;
+    try{
+        const user = await Email.findOneAndDelete({ email: email });
+        console.log(user);
+        res.status(200).json({ message: "Email Deleted", success: true });
+    }
+    catch(err){
+        console.log(err.message);
+        res.status(500).json({ error: "Internal server error", success: false });
+    }
+};
+
+module.exports = { registerEmail, checkUser, deleteEmail };
