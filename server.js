@@ -21,17 +21,17 @@ db(url);
 //schedules
 // const sendCronEmails = require("./email/cron.js");
 // sendCronEmails();
-// const sendEmailStats = require("./utils/admin.js");
+const sendEmailStats = require("./utils/admin.js");
 
-// app.get("/utils/admin", async (req, res) => {
-//     try{
-//         await sendEmailStats();
-//         res.status(200).json({ success: true });
-//     }
-//     catch(error){
-//         res.status(500).json({ success: false });
-//     }
-// });
+app.get("/utils/admin", async (req, res) => {
+    try{
+        await sendEmailStats();
+        res.status(200).json({ success: true });
+    }
+    catch(error){
+        res.status(500).json({ success: false });
+    }
+});
 
 const checkTime = require("./utils/check.js");
 console.log("checkTime");
