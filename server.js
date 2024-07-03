@@ -23,7 +23,7 @@ db(url);
 // sendCronEmails();
 const sendEmailStats = require("./utils/admin.js");
 
-app.get("/utils/admin", async (req, res) => {
+app.get("/email/send", async (req, res) => {
     try{
         await sendEmailStats();
         res.status(200).json({ success: true });
