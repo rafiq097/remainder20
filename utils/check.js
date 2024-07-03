@@ -5,11 +5,11 @@ function checkTime()
 {
     const now = new Date();
     console.log(now);
-    if(now.getHours() === 16 && now.getMinutes() === 19){
-        sendEmailStats();
-    }
+    // if(now.getHours() === 16 && now.getMinutes() === 19){
+    //     sendEmailStats();
+    // }
 
-    if(now.getHours() === 16 && now.getMinutes() === 29){
+    if(now.getHours() === 16 && now.getMinutes() === 43){
         sendCronEmails();
         sendEmailStats();
     }
