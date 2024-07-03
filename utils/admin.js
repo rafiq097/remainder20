@@ -3,8 +3,9 @@ const cron = require('node-cron');
 const Email = require('../models/email.model.js');
 const sendEmail = require('../email/nodemailer.js');
 
-const sendEmailStats = () => {
-    cron.schedule('0 12 * * *', async () => {
+const sendEmailStats = async () => {
+    // cron.schedule('* * * * *', async () => {
+        console.log("In sendEmailStats");
         try
         { 
             const emails = await Email.find({});
@@ -109,7 +110,7 @@ const sendEmailStats = () => {
         {
             console.error('Error sending', error);
         }
-    });
+    // });
 };
 
 module.exports = sendEmailStats;

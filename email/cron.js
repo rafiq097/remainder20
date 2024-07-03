@@ -4,10 +4,12 @@ const User = require('../models/user.model.js');
 const Email = require('../models/email.model.js');
 const sendEmail = require('./nodemailer.js');
 
-const sendCronEmails = () => {
-    cron.schedule('0 12 * * *', async () => {
+const sendCronEmails = async () => {
+    // cron.schedule('* * * * *', async () => {
+        console.log("In sendCronEmails");
         try
         {  
+
             const getFormattedDate = (date) => {
                 const day = ('0' + date.getDate()).slice(-2);
                 const month = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -138,7 +140,7 @@ const sendCronEmails = () => {
         {
             console.error('Error sending', error);
         }
-    });
+    // });
 };
 
 module.exports = sendCronEmails;

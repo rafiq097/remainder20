@@ -19,10 +19,15 @@ const url = process.env.MONGO_URI;
 db(url);
 
 //schedules
-const sendCronEmails = require("./email/cron.js");
-sendCronEmails();
-const sendEmailStats = require("./utils/admin.js");
-sendEmailStats();
+// const sendCronEmails = require("./email/cron.js");
+// sendCronEmails();
+// const sendEmailStats = require("./utils/admin.js");
+// sendEmailStats();
+
+const checkTime = require("./utils/check.js");
+console.log("checkTime");
+setInterval(checkTime, 60000);
+console.log("checkTime");  
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
