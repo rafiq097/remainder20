@@ -20,7 +20,7 @@ const checkUser = async (req, res) => {
     try{
         const user = await Email.findOne({ email: email });
         if(user)
-            res.status(201).json({ message: "User Already Subscribed", success: true, user });
+            res.status(201).json({ message: "Email Already Subscribed", success: true, user });
         else
             res.status(404).json({ message: "User Not Found", success: false });
     }
