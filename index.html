@@ -8,6 +8,14 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <style>
+        .toast {
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
     <form id="subscribeForm" class="max-w-sm mx-auto bg-white p-8 rounded-3xl shadow-2xl">
@@ -58,7 +66,7 @@
                         style: {
                             color: "red",
                             background: "white",
-                            borderRadius: "10px"
+                            borderRadius: "10px",
                         },
                         position: "top-center",
                         autoClose: 5000,
@@ -88,7 +96,7 @@
                                 style: {
                                     color: "green",
                                     background: "white",
-                                    borderRadius: "10px"
+                                    borderRadius: "10px",
                                 },
                                 position: "top-center",
                                 autoClose: 5000,
@@ -106,7 +114,7 @@
                                 style: {
                                     color: "red",
                                     background: "white",
-                                    borderRadius: "10px"
+                                    borderRadius: "10px",
                                 },
                                 position: "top-center",
                                 autoClose: 5000,
@@ -118,12 +126,12 @@
                         // messageBox.innerHTML = "Something went wrong... Please try again later..";
                         // messageBox.className = "text-red-900";
                         Toastify({
-                            text: "Something went wrong... Please try again later...",
+                            text: "Please try again later...",
                             className: "toast",
                             style: {
                                 color: "red",
                                 background: "white",
-                                borderRadius: "10px"
+                                borderRadius: "10px",
                             },
                             position: "top-center",
                             autoClose: 5000,
@@ -137,12 +145,12 @@
                 // messageBox.innerHTML = "Something went wrong... Please try again later..";
                 // messageBox.className = "text-red-900";
                 Toastify({
-                    text: "Something went wrong... Please try again later...",
+                    text: "Please try again later...",
                     className: "toast",
                     style: {
                         color: "red",
                         background: "white",
-                        borderRadius: "10px"
+                        borderRadius: "10px",
                     },
                     position: "top-center",
                     autoClose: 5000,

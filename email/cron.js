@@ -120,7 +120,6 @@ const sendCronEmails = async () => {
 
                     <br/>
                     <br/>
-                    <br/>
                     <hr>
                     <h1>Made With Pain</h1>
                     <hr>

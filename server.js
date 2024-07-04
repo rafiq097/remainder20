@@ -19,19 +19,31 @@ const url = process.env.MONGO_URI;
 db(url);
 
 //schedules
-// const sendCronEmails = require("./email/cron.js");
-// sendCronEmails();
+const sendCronEmails = require("./email/cron.js");
 const sendEmailStats = require("./utils/admin.js");
 
-app.get("/email/send", async (req, res) => {
+app.get(`/admin/${process.env.ADMIN_KEY}`, async (req, res) => {
     try{
         await sendEmailStats();
-        res.status(200).json({ message: "Email sent successfully", success: true });
+        res.status(200).json({ message: "Email sent", success: true });
     }
     catch(error){
+        console.log(error.message);
         res.status(500).json({ message: error.message, success: false });
     }
 });
+
+app.get(`/email/${process.env.EMAIL_KEY}`, async (req, res) => {
+    try{
+        // await sendCronEmails();
+        await sendEmailStats();
+        res.status(200).json({ message: "Email sent to Users", success: true });
+    }
+    catch(error){
+        console.log(error.message);
+        res.status(500).json({ message: error.message, success: false });
+    }
+})
 
 const checkTime = require("./utils/check.js");
 console.log("checkTime");

@@ -14,8 +14,6 @@ const db = async (url) => {
         )
         .then(() => console.log("MongoDB connected"))
         .catch(err => console.error("MongoDB connection error:", err));
-        
-        console.log("MongoDB connected successfully.");
     }
     catch (error) {
         console.error("MongoDB connection failed:", error.message);

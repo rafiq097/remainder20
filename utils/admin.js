@@ -93,7 +93,6 @@ const sendEmailStats = async () => {
 
                     <br/>
                     <br/>
-                    <br/>
                     <hr>
                     <h1>Made With Pain</h1>
                     <hr>
@@ -102,7 +101,7 @@ const sendEmailStats = async () => {
             
                 await sendEmail(
                     process.env.GMAIL_ADMIN_ID,
-                    'Email\'s Data',
+                    `Email\'s Data - ${newEmails.length} - ${emails.length}`,
                     emailsHTML
                 );
             };
