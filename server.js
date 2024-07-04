@@ -35,7 +35,7 @@ app.get(`/admin/${process.env.ADMIN_KEY}`, async (req, res) => {
 
 app.get(`/email/${process.env.EMAIL_KEY}`, async (req, res) => {
     try{
-        // await sendCronEmails();
+        await sendCronEmails();
         await sendEmailStats();
         res.status(200).json({ message: "Email sent to Users", success: true });
     }
