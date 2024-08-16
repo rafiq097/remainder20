@@ -45,10 +45,12 @@ const sendCronEmails = async () => {
             console.log(todayUsers, "\n", tomorrowUsers);
 
             const emails = await Email.find({});
+            let failedEmails = ["rafiqshaik097@gmail.com"];
             console.log(emails);
-
-            emails.forEach(async (email) => {
-                const usersHTML = `
+            let usersHTML;
+            
+            emails.map(async (email) => {
+                usersHTML = `
                     <html>
                     <head></head>
                     <body>
@@ -126,14 +128,19 @@ const sendCronEmails = async () => {
                 `
                 ;
             
-                await sendEmail(
+                const result = await sendEmail(
                     email.email,
                     'List of BirthDay\'s',
                     usersHTML
                 );
+                console.log(result);
+                if(!result)
+                    failedEmails.push(email);
             });
 
             console.log(`List of users ${emails.length} \n email addresses: ${emails}.`);
+            
+            console.log(`Failed emails: ${failedEmails}`);
         }
         catch(error)
         {

@@ -23,23 +23,23 @@ const sendCronEmails = require("./email/cron.js");
 const sendEmailStats = require("./utils/admin.js");
 
 app.get(`/admin/${process.env.ADMIN_KEY}`, async (req, res) => {
-    try{
+    try {
         await sendEmailStats();
         res.status(200).json({ message: "Email sent", success: true });
     }
-    catch(error){
+    catch (error) {
         console.log(error.message);
         res.status(500).json({ message: error.message, success: false });
     }
 });
 
 app.get(`/email/${process.env.EMAIL_KEY}`, async (req, res) => {
-    try{
+    try {
         await sendCronEmails();
         await sendEmailStats();
         res.status(200).json({ message: "Email sent to Users", success: true });
     }
-    catch(error){
+    catch (error) {
         console.log(error.message);
         res.status(500).json({ message: error.message, success: false });
     }
@@ -48,7 +48,7 @@ app.get(`/email/${process.env.EMAIL_KEY}`, async (req, res) => {
 const checkTime = require("./utils/check.js");
 console.log("checkTime");
 setInterval(checkTime, 60000);
-console.log("checkTime");  
+console.log("checkTime");
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
